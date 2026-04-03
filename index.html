@@ -636,7 +636,7 @@ function parseCSV(text) {
   const ti = header.findIndex(h=>h.includes('total'));
   return lines.slice(1).map(l=>{
     const c = l.split(sep);
-    return {name:(c[ni]||'').trim(), profile:(c[pi]||'').trim(), total:parseInt(c[ti])||0};
+    return {name:(c[ni]||'').replace(/"/g,'').trim(), profile:(c[pi]||'').trim(), total:parseInt(c[ti])||0};
   }).filter(r=>r.name).sort((a,b)=>b.total-a.total);
 }
 </script>
